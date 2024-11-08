@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/test.css') }}">
+    <style>
+        body {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        #magnifying_area {
+            width: 800px;
+            height: 500px;
+            overflow: hidden;
+            border: 3px solid #fff;
+            position: relative;
+        }
+
+        #magnifying_image {
+            max-width: 100%;
+            min-width: 100%;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+            cursor: move; /* Add this to make it draggable */
+        }
+    </style>
+    <title>Document</title>
+</head>
+<body>
+    <figure id="magnifying_area">
+        <img id="magnifying_image" src="{{ url_for('static', filename='images/esterno.jpg') }}" alt="Image">
+    </figure>
+</body>
+<script type="text/javascript">
+    var magnifying_image = document.getElementById('magnifying_image');
+
+    var offsetX, offsetY;
+    var isDragging = false;
+
+    magnifying_image.addEventListener("mousedown", function(event) {
+        isDragging = true;
+        offsetX = event.clientX - magnifying_image.getBoundingClientRect().left;
+        offsetY = event.clientY - magnifying_image.getBoundingClientRect().top;
+    });
+
+    window.addEventListener("mousemove", function(event) {
+        if (isDragging) {
+            var newX = event.clientX - offsetX;
+            var newY = event.clientY - offsetY;
+            
+            // Ensure the magnifying glass stays within the #magnifying_area
+            var maxX = magnifying_area.offsetWidth - magnifying_image.offsetWidth;
+            var maxY = magnifying_area.offsetHeight - magnifying_image.offsetHeight;
+            
+            newX = Math.min(maxX, Math.max(0, newX));
+            newY = Math.min(maxY, Math.max(0, newY));
+            
+            magnifying_image.style.left = newX + "px";
+            magnifying_image.style.top = newY + "px";
+        }
+    });
+
+    window.addEventListener("mouseup", function() {
+        isDragging = false;
+    });
+</script>
+</html>

@@ -1,0 +1,105 @@
+{% extends "admin/admin.html" %}
+{% block content %}
+<div class="row ">
+    <div class="col-lg-12 col-md-12">
+        <div class="card" style="min-height: 485px">
+            <div class="card-header card-header-text">
+                <h4 class="card-title">Turni</h4>
+                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#turns_add_modal">Nuovo</button>
+
+            </div>
+            <div class="card-content table-responsive">
+                <table id="table_turns" class="table table-bordered table-responsive table-striped">
+                    <thead class="text-primary">
+                        <tr>
+                            <th>ID</th>
+                            <th>Orario</th>
+                            <th>Modifica</th>
+                            <th>Elimina</th>                        
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for turn in turns %}
+                        <tr class="align-middle">
+                            <td>{{turn.id}}</td>
+                            <td>{{turn.description[:5]}}</td> 
+                            <td class="text-center"><button class="btn btn-secondary edit-button" data-bs-toggle="modal" data-row-id="{{turn.id}}"data-bs-target="#turns_edit_modal"><i class="material-icons" style="font-size:15px">edit</i></button></td>
+                            <td class="text-center"><button class="btn btn-danger btn-delete" data-row-id="{{turn.id}}" data-bs-toggle="modal" data-bs-target="#turns_delete_modal"><i class="material-icons" style="font-size:15px">delete</i></button></td>                          
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="turns_add_modal" tabindex="-1"  aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Nuovo Turno</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form method="POST" action="">
+        {{ form.hidden_tag() }}
+        {{ form.time.label(class="form-label") }}
+        {{ form.time(class="form-control",size=10) }}   
+        
+        
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Chiudi</button>
+        {{ form.submit(class="btn btn-primary ") }}
+      </div>
+    </div>
+    </form>
+  </div>
+</div>
+<div class="modal fade" id="turns_edit_modal" tabindex="-1"  aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Modifica Turno</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <input type="hidden" id="turn-id-edit">
+           
+        <label for="editTurn" class="form-label">Turno</label>
+        <input type="time" class="form-control" id="editTurn">     
+        
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Chiudi</button>
+        <a class="btn btn-primary" id="update-btn" href="">Modifica</a>
+        
+      </div>
+    </div>
+    
+  </div>
+</div>
+
+<div class="modal fade" id="turns_delete_modal" tabindex="-1"  aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Elimina Turno</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      
+      <div class="modal-body">
+        <p>Sei sicuro di voler eliminare?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Chiudi</button>
+        <a class="btn btn-danger" id="delete-btn" href="">Elimina</a>
+      </div>
+    </div>
+    
+  </div>
+</div>
+{% endblock content %}
+                      
+                        
+          

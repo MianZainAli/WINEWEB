@@ -1,0 +1,144 @@
+{% extends "admin/admin.html" %}
+{% block content %}
+<div class="row ">
+    <div class="col-lg-12 col-md-12">
+        <div class="card" style="min-height: 485px">
+            <div class="card-header card-header-text">
+                <h4 class="card-title">Tavoli</h4>
+                {% if current_user.admin is true %}
+                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#tables_modal">Nuovo</button>
+                {% endif %}
+            </div>
+            <div class="card-content table-responsive">
+                <table id="table_tables" class="table table-bordered table-responsive table-striped">
+                    <thead class="text-primary">
+                        <tr><th>ID</th>
+                        <th>Tavolo</th>
+                        <th>Negozio</th>
+                        <th>P. Min.</th>
+                        <th>P. Max</th>
+                        <th>Modifica</th>
+                        {% if current_user.admin is true %}<th>Elimina</th>{% endif %}
+                    </tr></thead>
+                    <tbody>
+                        {% for table in tables %}
+                        <tr class="align-middle">
+                            <td>{{table.id}}</td>
+                            <td>{{table.number}}</td> 
+                            <td>{{ table.negozio.name }}</td>
+                            <td>{{ table.min_places }}</td>
+                            <td>{{ table.max_places }}</td>
+                            <td class="text-center"><button class="btn btn-secondary edit-button-tables" data-bs-toggle="modal" data-row-id="{{table.id}}"data-bs-target="#tables_edit_modal"><i class="material-icons" style="font-size:15px">edit</i></button></td>
+                            {% if current_user.admin is true %}<td class="text-center"><button class="btn btn-danger btn-delete-tables" data-row-id="{{table.id}}" data-bs-toggle="modal" data-bs-target="#tables_delete_modal"><i class="material-icons" style="font-size:15px">delete</i></button></td> {% endif %}                          
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="tables_modal" tabindex="-1"  aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content ">
+      <div class="modal-header">
+        <h5 class="modal-title">Nuovo Tavolo</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form method="POST" action="">
+        {{ form.hidden_tag() }}
+        <div class="row">
+            <div class="col-12 col-sm-6">
+                {{ form.shop.label(class="form-label") }}
+                {{ form.shop(class="form-select") }} 
+            </div>
+            <div class="col-12 col-sm-6">
+                {{ form.number.label(class="form-label") }}
+                {{ form.number(class="form-control") }} 
+                
+            </div> 
+        </div>
+        <div class="row">
+            <div class="col-12 col-sm-6">
+                {{ form.min_places.label(class="form-label") }}
+                {{ form.min_places(class="form-control") }} 
+            </div>
+            <div class="col-12 col-sm-6">
+                {{ form.max_places.label(class="form-label") }}
+                {{ form.max_places(class="form-control") }} 
+                
+            </div> 
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Chiudi</button>
+            {{ form.submit(class="btn btn-primary") }} 
+      </div>
+    </form>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="tables_delete_modal" tabindex="-1"  aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Elimina Tavolo</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      
+      <div class="modal-body">
+        <p>Sei sicuro di voler eliminare?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Chiudi</button>
+        <a class="btn btn-danger" id="delete-btn-tables" href="">Elimina</a>
+      </div>
+    </div>
+    
+  </div>
+</div>
+<div class="modal fade" id="tables_edit_modal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Modifica Tavolo</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form id="form-tables-edit">
+          <input type="hidden" id="tables-id-edit">
+          <div class="row">
+            <div class="col-12 col-sm-6">
+              {{ form.shop.label(class="form-label") }}
+                {{ form.shop(class="form-select") }}
+            </div>
+            <div class="col-12 col-sm-6">
+              <label for="number" class="form-label">Numero</label>
+              <input type="text" id="number-edit" name="number" class="form-control">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12 col-sm-6">
+              <label for="min_places" class="form-label">Posti Minimi</label>
+              <input type="text" id="min_places-edit" name="min_places" class="form-control">
+            </div>
+            <div class="col-12 col-sm-6">
+              <label for="max_places" class="form-label">Posti Massimi</label>
+              <input type="text" id="max_places-edit" name="max_places" class="form-control">
+            </div>
+          </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Chiudi</button>
+        <button id="submit-tables-edit" type="submit" class="btn btn-primary">Conferma</button>
+      </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+{% endblock content %}
+                      
+                        
+          

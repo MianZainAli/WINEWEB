@@ -1,0 +1,217 @@
+{% extends "admin/admin.html" %}
+{% block content %}
+
+<div class="row">
+    <div class="col-lg-12 col-md-12">
+        <div class="card" style="min-height: 485px">            
+            <div class="card-content">
+                <div class="d-flex flex-row ">
+                    
+                    <h3>Sala</h3>
+                    <input type="hidden" id = 'sala_select' value="1">
+
+                <button class="btn btn-primary ms-auto" data-bs-toggle="modal" data-bs-target="#newResModal">Nuovo</button>
+                
+                 </div>
+
+                <div class="row row-cols-1 row-cols-md-3 g-4 p-1">
+                    {% for i in range(5, 11) %}
+                        <div class="col-lg-2 col-md-4 col-sm-6">
+							{% if tables_reservations[i]['reservations'] and tables_reservations[i]['reservations'][0].validated == 1 %}
+                            <div class="card card-table text-bg-danger mb-3" data-table-id="{{ tables_reservations[i]['id'] }}" style="max-width: 18rem; min-height: 8rem;">
+                            {% elif tables_reservations[i]['reservations'] and tables_reservations[i]['reservations'][0].validated == 0 %}
+                            <div class="card card-table text-bg-warning mb-3" data-table-id="{{ tables_reservations[i]['id'] }}" style="max-width: 18rem; min-height: 8rem;">
+                            {% else %}
+                            <div class="card card-table text-bg-success mb-3" data-table-id="{{ tables_reservations[i]['id'] }}" style="max-width: 18rem; min-height: 8rem;">
+                            {% endif %}
+                                <div class="card-body">
+                                    <h5 class="card-title"><b>Tavolo {{ tables_reservations[i]['number'] }}</b></h5>
+                                    {% if tables_reservations[i]['reservations'] %}
+                                        <ul>
+                                            <li>{{ tables_reservations[i]['reservations'][0].name }} {{ tables_reservations[i]['reservations'][0].time[:5] }}
+                                                {% if tables_reservations[i]['reservations'][0].note != ""  %} 
+                                                <i class="material-icons">
+                                                info
+                                                </i>
+                                                {% endif %}
+                                            </li>
+                                        </ul>
+                                   
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="card-content">
+                <h3>Ingresso</h3>
+                <div class=  "row row-cols-1 row-cols-md-3 g-4">
+                    {% for i in range(2, 5) %}
+                        <div class="col-lg-2 col-md-4 col-sm-6">
+							{% if tables_reservations[i]['reservations'] and tables_reservations[i]['reservations'][0].validated == 1 %}
+                            <div class="card card-table text-bg-danger mb-3" data-table-id="{{ tables_reservations[i]['id'] }}" style="max-width: 18rem; min-height: 8rem;">
+                            {% elif tables_reservations[i]['reservations'] and tables_reservations[i]['reservations'][0].validated == 0 %}
+                            <div class="card card-table text-bg-warning mb-3" data-table-id="{{ tables_reservations[i]['id'] }}" style="max-width: 18rem; min-height: 8rem;">
+                            {% else %}
+                            <div class="card card-table text-bg-success mb-3" data-table-id="{{ tables_reservations[i]['id'] }}" style="max-width: 18rem; min-height: 8rem;">
+                            {% endif %}
+                                <div class="card-body">
+                                    <h5 class="card-title"><b>Tavolo {{ tables_reservations[i]['number'] }}</b></h5>
+                                    {% if tables_reservations[i]['reservations'] %}
+                                        <ul>
+                                            <li>{{ tables_reservations[i]['reservations'][0].name }} {{ tables_reservations[i]['reservations'][0].time[:5] }}
+                                                {% if tables_reservations[i]['reservations'][0].note != ""  %} 
+                                                <i class="material-icons">
+                                                info
+                                                </i>
+                                                {% endif %}
+                                            </li>
+                                        </ul>
+                                   
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="card-content">
+                <h3>Esterno</h3>
+                <div class="row row-cols-1 row-cols-md-3 g-3">
+                    {% for i in range(2) %}
+                        <div class="col-lg-2 col-md-6 col-sm-12">
+                        	{% if tables_reservations[i]['reservations'] and tables_reservations[i]['reservations'][0].validated == 1 %}
+                            <div class="card card-table text-bg-danger mb-3" data-table-id="{{ tables_reservations[i]['id'] }}" style="max-width: 18rem; min-height: 8rem;">
+                            {% elif tables_reservations[i]['reservations'] and tables_reservations[i]['reservations'][0].validated == 0 %}
+                            <div class="card card-table text-bg-warning mb-3" data-table-id="{{ tables_reservations[i]['id'] }}" style="max-width: 18rem; min-height: 8rem;">
+                            {% else %}
+                            <div class="card card-table text-bg-success mb-3" data-table-id="{{ tables_reservations[i]['id'] }}" style="max-width: 18rem; min-height: 8rem;">
+                            {% endif %}
+                                <div class="card-body">
+                                    <h5 class="card-title"><b>Tavolo {{ tables_reservations[i]['number'] }}</b></h5>
+                                    {% if tables_reservations[i]['reservations'] %}
+                                        <ul >
+                                            <li >{{ tables_reservations[i]['reservations'][0].name }} {{ tables_reservations[i]['reservations'][0].time[:5] }}
+                                                {% if tables_reservations[i]['reservations'][0].note != ""  %} 
+                                                <i class="material-icons">
+                                                info
+                                                </i>
+                                                {% endif %}
+                                            </li>
+                                        </ul>                                   
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="salaModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Prenotazioni</h1>
+                <button type="button" id="close_modal" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <table id="table-tables-reservation" class="table table-bordered table-striped" style="width: 100%;">
+                    <thead>
+                        <tr>
+                            <th>
+                                id
+                            </th>
+                            <th>
+                                Nome
+                            </th>
+                            <th>
+                                Ore
+                            </th>
+                            <th>
+                                Stato
+                            </th>
+                            <th>
+                                Conferma
+                            </th>
+                            <th>
+                                Disdici
+                            </th>
+                            <th>
+                                Note
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="newResModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Nuova Prenotazione</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+       <div class="form-floating mb-3">
+          <input type="text" class="form-control" id="floatingName">
+          <label for="floatingName">Nome</label>
+        </div>
+        <div class="form-floating mb-3">
+          <input type="text" class="form-control" id="floatingPhone">
+          <label for="floatingName">Telefono</label>
+        </div>
+        <div class="form-floating mb-3" >
+          <input type="date" class="form-control" id="floatingDate">
+          <label for="floatingDate">Data</label>                    
+        </div>
+        <div class="form-floating mb-3">
+            <input type="text" class="form-control" name="people" id="floatingPeople">
+            <label for="floatingPeople">Persone</label>
+        </div>
+        <div class="form-floating mb-3">
+          <select class="form-select" id="floatingSelect" aria-label="Floating label select example">
+            <option selectedvalue="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+            <option value="11">11</option>
+          </select>
+          <label for="floatingSelect">Tavolo</label>
+        </div>
+        <div class="form-floating mb-3">
+          <select class="form-select" id="floatingSelectTurn" aria-label="Floating label select example">           
+            {% for turn in turns %}
+             <option value="{{turn.id}}">{{turn.description[:5]}}</option>
+            {% endfor %}
+          </select>
+          <label for="floatingSelect">Turno</label>
+        </div>
+        <div class="form-floating">
+          <textarea class="form-control" placeholder="Lascia una nota qui" id="floatingNote" style="height: 100px"></textarea>
+          <label for="floatingTextarea2">Note</label>
+        </div>
+      </div>
+      <div class="modal-footer">        
+        <button id= "reservation-confirm" type="button" class="btn btn-primary" data-bs-dismiss="modal">Conferma</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+{% endblock %}

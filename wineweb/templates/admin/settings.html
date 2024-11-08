@@ -1,0 +1,39 @@
+{% extends "admin/admin.html" %}
+{% block content %}
+<div class="row ">
+    <div class="col-lg-12 col-md-12">
+        <div class="card" style="min-height: 485px">
+            <div class="card-header card-header-text">
+                <h4 class="card-title">impostazioni</h4>                              
+            </div>
+            <div class="card-content table-responsive">
+            	<form method="POST" action="{{url_for('admin.settings_update')}}">
+            	<section>
+	            	<h6>Mail</h6>
+	            	<div class="form-floating mb-3">
+					  <input type="email" class="form-control" id="floatingInput" name="mail" placeholder="name@example.com" value="{{settings.mail}}">
+					  <label for="floatingInput">Email</label>
+					</div>
+					<div class="form-floating">
+					  <input type="password" class="form-control" id="floatingPassword" name="password" placeholder="Password" value= "{{ settings.password }}">
+					  <label for="floatingPassword">Password</label>
+					</div>
+				</section>
+				<section class="mt-2">
+					<h6>Importo Cauzione</h6>
+					<div class="form-floating">
+					<input type="text" class="form-control" id="floatingInput" placeholder="10" name ="importo" value="{{ settings.importo }}">
+					 <label for="floatingInput">Importo</label>
+					</div>
+
+				</section>
+				<button class="mt-2 btn btn-primary">Conferma</button>
+			</form>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock content %}

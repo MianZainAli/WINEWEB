@@ -1,0 +1,103 @@
+{% extends "admin/admin.html" %}
+{% block content %}
+<div class="row">
+    <div class="col-lg-3 col-md-6 col-sm-6">
+        <div class="card card-stats">
+            <div class="card-header">
+                <div class="icon icon-warning">
+                   <span class="material-icons">groups</span>
+                </div>
+            </div>
+            <div class="card-content">
+                <p class="category"><strong>Clienti</strong></p>
+                <h3 class="card-title">{{ customers }}</h3>
+            </div>
+            
+        </div>
+    </div>
+    <div class="col-lg-3 col-md-6 col-sm-6">
+        <div class="card card-stats">
+            <div class="card-header">
+                <div class="icon icon-rose">
+                   <span class="material-icons">event_avaiable</span>
+
+                </div>
+            </div>
+            <div class="card-content">
+                <p class="category"><strong>Prenotazioni</strong></p>
+                <h3 class="card-title">{{res_number}}</h3>
+            </div>
+            
+        </div>
+    </div>
+    <div class="col-lg-3 col-md-6 col-sm-6">
+        <div class="card card-stats">
+            <div class="card-header">
+                <div class="icon icon-success">
+                    <span class="material-icons">
+                    table_restaurant
+                    </span>
+
+                </div>
+            </div>
+            <div class="card-content">
+                <p class="category"><strong>Tavoli</strong></p>
+                <h3 class="card-title">{{ tables }}</h3>
+            </div>
+            
+        </div>
+    </div>
+    <div class="col-lg-3 col-md-6 col-sm-6">
+        <div class="card card-stats">
+            <div class="card-header">
+                <div class="icon icon-info">
+                
+            <span class="material-icons">
+            payments
+            </span>
+                </div>
+            </div>
+            <div class="card-content">
+                <p class="category"><strong>Cauzioni</strong></p>
+                <h3 class="card-title">{{ charged }}</h3>
+            </div>
+            
+        </div>
+    </div>
+</div>
+
+
+<div class="row ">
+    <div class="col-lg-12 col-md-12">
+        <div class="card" style="min-height: 485px">
+            <div class="card-header card-header-text">
+                <h4 class="card-title">Prenotazioni</h4>
+                
+            </div>
+            <div  class="card-content table-responsive">
+                <table id="table-reservations" class="table table-hover  table-bordered table-striped">
+                    <thead class="text-primary">
+                        <tr><th>ID</th>
+                        <th>Nome</th>
+                        <th>Data</th>
+                        <th>Online</th>
+                        <th>Turno</th>
+                        <th>Tavolo</th>
+                        <th>Negozio</th>
+                        <th>Stato</th>
+                        <th>Conferma</th>
+                        <th>Addebita</th>
+                        <th>Note</th>
+                    </tr></thead>
+                    <tbody>
+                       
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}
+                      
+                        
+          

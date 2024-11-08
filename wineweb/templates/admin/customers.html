@@ -1,0 +1,72 @@
+{% extends "admin/admin.html" %}
+{% block content %}
+<div class="row ">
+    <div class="col-lg-12 col-md-12">
+        <div class="card" style="min-height: 485px">
+            <div class="card-header card-header-text">
+                <h4 class="card-title">Clienti</h4>                              
+            </div>
+            <div class="card-content table-responsive">
+                <table id="table_customers" class="table table-bordered table-striped">
+                    <thead class="text-primary">
+                        <tr><th>ID</th>
+                        <th>Nome</th>
+                        <th>Cognome</th>    
+                        <th>Telefono</th>
+                        <th>Email</th>                    
+                        <th>Privacy</th>
+                        <th>Newsletter</th>
+                        
+                        
+                    </tr></thead>
+                    <tbody>
+                        {% for customer in customers %}
+                        <tr class="align-middle">
+                            <td>{{customer.id}}</td>
+                            <td>{{customer.name}}</td> 
+                            <td>{{customer.surname}}</td>
+                            <td>{{customer.phone}}</td>    
+                            <td>{{customer.mail}}</td>                         
+                            <td class="text-center">{% if customer.privacy is true %}
+                                <i class="material-icons" ><span class="material-symbols-outlined text-success">
+                            check_circle
+                            </span></i>
+                                {% endif %}
+                            </td> 
+                            <td class="text-center">{% if customer.news is true %}
+                                <i class="material-icons" ><span class="material-symbols-outlined text-success">
+                            check_circle
+                            </span></i>
+                                {% endif %}
+                            </td>                         
+
+                                                    
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="turns_modal" tabindex="-1"  aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Nuovo Turno</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Chiudi</button>
+        <button type="button" class="btn btn-primary">Conferma</button>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock content %}
+                      
+                        
+          

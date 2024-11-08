@@ -1,0 +1,99 @@
+{% extends "admin/admin.html" %}
+{% block content %}
+
+<div class="row ">
+    <div class="col-lg-12 col-md-12">
+        <div class="card" style="min-height: 485px">
+            <div class="card-header card-header-text">
+                <h4 class="card-title">Prenotazioni</h4>                              
+            </div>
+
+    		<div class="card-content table-responsive">
+           		<div class="form-floating mb-3" style="width: 20%;" >
+          			<input type="date" class="form-control floatingDateReservation" id="reservation-date" >
+          			<label for="floatingDateReservation">Data</label>  
+
+        		</div>        		
+
+                <div class="mt-4">
+	            	<table id="example" class="table table-bordered table-striped">
+	            		<thead>
+	            			<th>ID</th>
+	            			<th>Tavolo</th>
+	            			<th>Negozio</th>
+	            			<th>Prenotazioni</th>
+	            			<th>#</th>	            			
+	            			
+	            		</thead>	            	
+	            	<tbody>
+	            		
+	            	</tbody>
+	           	 </table>
+
+            </div>
+        </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="newResModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Nuova Prenotazione</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <input type="hidden" id="shop-selected">
+      </div>
+      <div class="modal-body">
+       <div class="form-floating mb-3">
+          <input type="text" class="form-control" id="floatingName">
+          <label for="floatingName">Nome</label>
+        </div>
+        <div class="form-floating mb-3">
+          <input type="text" class="form-control" id="floatingPhone">
+          <label for="floatingName">Telefono</label>
+        </div>
+        <div class="form-floating mb-3" >
+          <input type="date" class="form-control floatingDateReservation" id="floatingDate">
+          <label for="floatingDate">Data</label>                    
+        </div>
+        <div class="form-floating mb-3">
+            <input type="text" class="form-control" name="people" id="floatingPeople">
+            <label for="floatingPeople">Persone</label>
+        </div>
+        <div class="form-floating mb-3">
+          <select class="form-select" id="floatingSelect" aria-label="Floating label select example">           
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+            <option value="11">11</option>
+            <option value="12">12</option>
+            <option value="13">13</option>
+            <option value="14">14</option>
+          </select>
+          <label for="floatingSelect">Tavolo</label>
+        </div>
+        <div class="form-floating mb-3">
+          <select class="form-select" id="floatingSelectTurn" aria-label="Floating label select example">          
+           
+          </select>
+          <label for="floatingSelectTurn">Turno</label>
+        </div>
+        <div class="form-floating">
+          <textarea class="form-control" placeholder="Leave a comment here" id="floatingNote" style="height: 100px"></textarea>
+          <label for="floatingTextarea2">Note</label>
+        </div>
+      </div>
+      <div class="modal-footer">        
+        <button id= "reservation-confirm" type="button" class="btn btn-primary" data-bs-dismiss="modal">Conferma</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>{{ title }}</title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+	  <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/layout.css')}}">
+	  {% block css %}
+	  {% endblock %}
+</head>
+<body>
+	<header class="mkdf-page-header" style="padding-top: 15px;padding-block: 15px;">
+	    <div class="mkdf-menu-area" style="opacity: 1;">
+	        <div class="mkdf-vertical-align-containers">
+	            <div class="mkdf-position-left">
+	               <div class="mkdf-position-left-inner">
+	                    <nav class="mkdf-main-menu mkdf-drop-down mkdf-divided-left-part mkdf-default-nav">
+	                        <ul id="menu-menu-principale-sinistra" class="clearfix">
+	                            <li id="nav-menu-item-4122" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home current-menu-item page_item page-item-259  narrow">
+	                                <a href="https://lavineriadimontepulciano.it/" class=" current ">
+	                                    <span class="item_outer"><span class="item_text">HOME PAGE</span></span>
+	                                </a>
+	                            </li>
+	                            <li id="nav-menu-item-5336" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children has_sub narrow">
+	                                <a href="#" class="">
+	                                    <span class="item_outer"><span class="item_text">SHOP</span><i class="mkdf-menu-arrow fa fa-angle-down"></i></span>
+	                                </a>
+	                                <div class="second" style="height: 0px;">
+	                                    <div class="inner">
+	                                        <ul>
+	                                            <li id="nav-menu-item-5337" class="menu-item menu-item-type-custom menu-item-object-custom ">
+	                                                <a href="https://wine.lavineriadimontepulciano.it/" class="">
+	                                                    <span class="item_outer"><span class="item_text">USA e OTHER COUNTRIES</span></span>
+	                                                </a>
+	                                            </li>
+	                                            <li id="nav-menu-item-5338" class="menu-item menu-item-type-custom menu-item-object-custom ">
+	                                                <a href="https://shop.lavineriadimontepulciano.it/" class="">
+	                                                    <span class="item_outer"><span class="item_text">ITALIA</span></span>
+	                                                </a>
+	                                            </li>
+	                                            <li id="nav-menu-item-5339" class="menu-item menu-item-type-custom menu-item-object-custom ">
+	                                                <a href="https://eu.lavineriadimontepulciano.it/" class="">
+	                                                    <span class="item_outer"><span class="item_text">EUROPA</span></span>
+	                                                </a>
+	                                            </li>
+	                                        </ul>
+	                                    </div>
+	                                </div>
+	                            </li>
+	                            <li id="nav-menu-item-4125" class="menu-item menu-item-type-post_type menu-item-object-page  narrow">
+	                                <a href="https://lavineriadimontepulciano.it/chi-siamo/" class="">
+	                                    <span class="item_outer"><span class="item_text">CHI SIAMO</span></span>
+	                                </a>
+	                            </li>
+	                            <li id="nav-menu-item-4128" class="menu-item menu-item-type-post_type menu-item-object-page  narrow">
+	                                <a href="https://lavineriadimontepulciano.it/i-nostri-servizi/" class="">
+	                                    <span class="item_outer"><span class="item_text">SERVIZI</span></span>
+	                                </a>
+	                            </li>
+	                        </ul>
+	                    </nav>
+	                </div>
+	            </div>
+	            <div class="mkdf-position-center">
+	                <!--
+	                 --><div class="mkdf-position-center-inner">
+	                    <div class="mkdf-logo-wrapper">
+	                        <a itemprop="url" href="https://lavineriadimontepulciano.it/" style="height: 206px;">
+	                            <img itemprop="image" class="mkdf-normal-logo" src="https://lavineriadimontepulciano.it/wp-content/uploads/2022/06/la-vineria-di-montepulciano.png" width="1024" height="413" alt="logo">
+	                            <img itemprop="image" class="mkdf-dark-logo" src="https://lavineriadimontepulciano.it/wp-content/uploads/2022/06/la-vineria-di-montepulciano.png" width="1024" height="413" alt="dark logo">
+	                            <img itemprop="image" class="mkdf-light-logo" src="https://lavineriadimontepulciano.it/wp-content/uploads/2022/06/la-vineria-di-montepulciano.png" width="1024" height="413" alt="light logo">
+	                        </a>
+	                    </div>
+	                </div>
+	            </div>
+	            <div class="mkdf-position-right">
+	                <!--
+	                 --><div class="mkdf-position-right-inner">
+	                    <nav class="mkdf-main-menu mkdf-drop-down mkdf-divided-right-part mkdf-default-nav">
+	                        <ul id="menu-menu-principale-destra" class="clearfix">
+	                            <li id="nav-menu-item-4463" class="menu-item menu-item-type-post_type menu-item-object-page current_page_item mkdf-active-item narrow">
+	                                <a href="{{ url_for('main.shop_selection') }}" class="current">
+	                                    <span class="item_outer"><span class="item_text">PRENOTA</span></span>
+	                                </a>
+	                            </li>
+	                            <li id="nav-menu-item-4432" class="menu-item menu-item-type-post_type menu-item-object-page  narrow">
+	                                <a href="https://lavineriadimontepulciano.it/lavora-con-noi/" class="">
+	                                    <span class="item_outer"><span class="item_text">LAVORA CON NOI</span></span>
+	                                </a>
+	                            </li>
+	                            <li id="nav-menu-item-4131" class="menu-item menu-item-type-post_type menu-item-object-page  narrow">
+	                                <a href="https://lavineriadimontepulciano.it/contatti/" class="">
+	                                    <span class="item_outer"><span class="item_text">CONTATTI</span></span>
+	                                </a>
+	                            </li>
+	                        </ul>
+	                    </nav>
+	                </div>
+	                <div class="mkdf-divided-right-widget-area">
+	                    <div class="mkdf-divided-right-widget-area-inner">
+	                        <div class="mkdf-position-right-inner-wrap">
+	                        </div>
+	                    </div>
+	                </div>
+	            </div>
+	        </div>
+	    </div>
+	    
+	</header>
+
+
+
+
+
+	<header class="mkdf-mobile-header" style="margin-bottom: 0px;">
+	    <div class="mkdf-mobile-header-inner">
+	        <div class="mkdf-mobile-header-holder">
+	            <div class="mkdf-grid">
+	                <div class="mkdf-vertical-align-containers">
+	                    <div class="mkdf-vertical-align-containers">
+	                        <div class="mkdf-position-left">
+	                            <div class="mkdf-position-left-inner">
+	                                <div class="mkdf-mobile-logo-wrapper">
+	                                    <a itemprop="url" href="https://lavineriadimontepulciano.it/" style="height: 60px">
+	                                        <img itemprop="image" src="https://lavineriadimontepulciano.it/wp-content/uploads/2022/06/la-vineria-di-montepulciano-mobile.png" width="200" height="81" alt="Mobile Logo">
+	                                    </a>
+	                                </div>
+	                            </div>
+	                        </div>
+	                        <div class="mkdf-position-right">
+	                            <div class="mkdf-position-right-inner">
+	                                <div id="menu-button" class="mkdf-mobile-menu-opener mkdf-mobile-menu-opener-svg-path">
+	                                    <a href="javascript:void(0)">
+	                                        <span class="mkdf-mobile-menu-icon">
+	                                            <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="43px" height="19px" viewBox="0 0 43 19" enable-background="new 0 0 43 19" xml:space="preserve">
+	                                                <line fill="none" stroke="#000000" stroke-miterlimit="10" x1="0" y1="9.5" x2="43" y2="9.5"></line>
+	                                                <line fill="none" stroke="#000000" stroke-miterlimit="10" x1="11.844" y1="0.531" x2="30.844" y2="0.531"></line>
+	                                                <line fill="none" stroke="#000000" stroke-miterlimit="10" x1="11.844" y1="18.547" x2="30.844" y2="18.547"></line>
+	                                            </svg>
+	                                        </span>
+	                                    </a>
+	                                </div>
+	                            </div>
+	                        </div>
+	                    </div>
+	                </div>
+	            </div>
+	        </div>
+	        <nav class="mkdf-mobile-nav ps" id="menu-menu-principale-mobile" role="navigation" aria-label="Mobile Menu" style="height: 300px; padding-top: 20px;padding-bottom: 20px;">
+	            <div class="mkdf-grid">
+	                <ul  class="">
+	                    <li id="mobile-menu-item-4132" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home current-menu-item page_item page-item-259 current_page_item mkdf-active-item">
+	                        <a href="https://lavineriadimontepulciano.it/" class="current"><span>HOME PAGE</span></a>
+	                    </li>
+	                    <li id="mobile-menu-item-4135" class="menu-item menu-item-type-post_type menu-item-object-page ">
+	                        <a href="https://lavineriadimontepulciano.it/chi-siamo/" class=""><span>CHI SIAMO</span></a>
+	                    </li>
+	                    <li id="mobile-menu-item-4137" class="menu-item menu-item-type-post_type menu-item-object-page ">
+	                        <a href="https://lavineriadimontepulciano.it/i-nostri-servizi/" class=""><span>SERVIZI</span></a>
+	                    </li>
+	                    <li id="mobile-menu-item-4462" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children has_sub">
+	                        <a href="https://lavineriadimontepulciano.it/shopping/" class=""><span>SHOP</span></a>
+	                        <span class="mobile_arrow"><i class="mkdf-sub-arrow ion-ios-arrow-right"></i></span>
+	                        <ul class="sub_menu">
+	                            <li id="mobile-menu-item-5340" class="menu-item menu-item-type-custom menu-item-object-custom ">
+	                                <a href="https://wine.lavineriadimontepulciano.it/" class=""><span>USA e OTHER COUNTRIES</span></a>
+	                            </li>
+	                            <li id="mobile-menu-item-5341" class="menu-item menu-item-type-custom menu-item-object-custom ">
+	                                <a href="https://shop.lavineriadimontepulciano.it/" class=""><span>ITALIA</span></a>
+	                            </li>
+	                            <li id="mobile-menu-item-5342" class="menu-item menu-item-type-custom menu-item-object-custom ">
+	                                <a href="https://eu.lavineriadimontepulciano.it/" class=""><span>EUROPA</span></a>
+	                            </li>
+	                        </ul>
+	                    </li>
+	                    <li id="mobile-menu-item-4459" class="menu-item menu-item-type-post_type menu-item-object-page ">
+	                        <a href="https://lavineriadimontepulciano.it/lavora-con-noi/" class=""><span>LAVORA CON NOI</span></a>
+	                    </li>
+	                    <li id="mobile-menu-item-4136" class="menu-item menu-item-type-post_type menu-item-object-page ">
+	                        <a href="https://lavineriadimontepulciano.it/contatti/" class=""><span>CONTATTI</span></a>
+	                    </li>
+	                </ul>
+	            </div>
+	            <div class="ps__rail-x" style="left: 0px; bottom: 0px;">
+	                <div class="ps__thumb-x" tabindex="0" style="left: 0px; width: 0px;"></div>
+	            </div>
+	            <div class="ps__rail-y" style="top: 0px; right: 0px;">
+	                <div class="ps__thumb-y" tabindex="0" style="top: 0px; height: 0px;"></div>
+	            </div>
+	        </nav>
+	    </div>
+	</header>
+	<div class="main-reservation-content">
+
+		{% block content %}
+		{% endblock %}
+	</div>
+	<footer class="mkdf-page-footer mkdf-custom-menu">
+    <div class="mkdf-footer-top-holder">
+        <div class="mkdf-footer-top-inner mkdf-full-width">
+            <div class="mkdf-grid-row mkdf-footer-top-alignment-center">
+                <div class="mkdf-column-content mkdf-grid-col-4">
+                    <div class="widget mkdf-separator-widget">
+                        <div class="mkdf-separator-holder clearfix mkdf-separator-center mkdf-separator-normal">
+                            <div class="mkdf-separator" style="border-style: solid; margin-top: 90px"></div>
+                        </div>
+                    </div>
+                    <div id="text-7" class="widget mkdf-footer-column-1 widget_text">
+                        <div class="mkdf-widget-title-holder">
+                            <h5 class="mkdf-widget-title">Contatti &amp; Info</h5>
+                        </div>
+                        <div class="textwidget">
+                            <p>
+                                <a href="https://www.google.it/maps/place/La+Vineria+di+Montepulciano/@43.0967495,11.7848055,319m/data=!3m1!1e3!4m5!3m4!1s0x13295c1aea88fa37:0xfe2e3700fe429b9c!8m2!3d43.0966147!4d11.7850691"
+                                    target="_blank" rel="noopener">Via di Gracciano nel Corso, 101, Montepulciano (SI)</a><br>
+                                Recapito telefonico: <a href="tel:+390578850153">+39 0578850153</a><br>
+                                Email: <a href="mailto:vineriatoscana@gmail.com">vineriatoscana@gmail.com</a>
+                            </p>
+                            <p>
+                                <strong>La Vineria Ercolani SRL</strong><br>
+                                P:IVA 01551730524 | REA SI-211870<br>
+                                SDI:J6URRTW<br>
+                                PEC: <a href="mailto:vineriatoscana@pec.it">vineriatoscana@pec.it</a>
+                            </p>
+                        </div>
+                    </div>
+                    <div id="zoom-social-icons-widget-3" class="widget mkdf-footer-column-1 zoom-social-icons-widget">
+                        <div class="mkdf-widget-title-holder">
+                            <h5 class="mkdf-widget-title">Info &amp; Prenotazioni</h5>
+                        </div>
+
+                        <ul class="zoom-social-icons-list zoom-social-icons-list--with-canvas zoom-social-icons-list--round zoom-social-icons-list--no-labels">
+                            <li class="zoom-social_icons-list__item">
+                                <a class="zoom-social_icons-list__link" href="https://wa.me/3896588823" target="_blank" title="Facebook">
+                                    
+                                        <i class="fa-brands fa-whatsapp icon-wine" style="background-color : #20B038;"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="mkdf-column-content mkdf-grid-col-4">
+                    <div id="text-9" class="widget mkdf-footer-column-2 widget_text">
+                        <div class="textwidget">
+                            <p><img decoding="async" loading="lazy" class="wp-image-7 aligncenter"
+                                    src="https://lavineriadimontepulciano.it/wp-content/uploads/2022/06/la-vineria-di-montepulciano-300x121.png"
+                                    alt="" width="223" height="90"
+                                    srcset="https://lavineriadimontepulciano.it/wp-content/uploads/2022/06/la-vineria-di-montepulciano-300x121.png 300w, https://lavineriadimontepulciano.it/wp-content/uploads/2022/06/la-vineria-di-montepulciano-600x242.png 600w, https://lavineriadimontepulciano.it/wp-content/uploads/2022/06/la-vineria-di-montepulciano-768x310.png 768w, https://lavineriadimontepulciano.it/wp-content/uploads/2022/06/la-vineria-di-montepulciano.png 1024w"
+                                    sizes="(max-width: 223px) 100vw, 223px"></p>
+                        </div>
+                    </div>
+                    <div id="text-3" class="widget mkdf-footer-column-2 widget_text">
+                        <div class="mkdf-widget-title-holder">
+                            <h5 class="mkdf-widget-title">Informazioni Legali</h5>
+                        </div>
+                        <div class="textwidget">
+                            <p><a href="/cookie-policy">Cookie Policy</a><br>
+                                <a href="/privacy-policy">Privacy Policy</a></p>
+                        </div>
+                    </div>
+                    <div id="text-10" class="widget mkdf-footer-column-2 widget_text">
+                        <div class="mkdf-widget-title-holder">
+                            <h5 class="mkdf-widget-title">Lavora con noi</h5>
+                        </div>
+                        <div class="textwidget">
+                            <p><a href="/lavora-con-noi/">Vuoi lavorare con noi? Contattaci</a></p>
+                        </div>
+                    </div>
+                    <div id="zoom-social-icons-widget-2" class="widget mkdf-footer-column-2 zoom-social-icons-widget">
+                        <ul class="zoom-social-icons-list zoom-social-icons-list--with-canvas zoom-social-icons-list--round zoom-social-icons-list--align-center zoom-social-icons-list--no-labels" style="    display: flex;
+    justify-content: space-around;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    padding-inline-start: 40px;
+    padding-inline-end: 40px;">
+                            <li class="zoom-social_icons-list__item">
+                                <a class="zoom-social_icons-list__link"
+                                    href="https://www.facebook.com/lavineriadimontepulciano" target="_blank"
+                                    title="Facebook">
+                                    <i class="fa-brands fa-facebook icon-wine" style="background-color : #1877F2; font-size: 22px;"></i>
+                                </a>
+                            </li>
+                            <li class="zoom-social_icons-list__item">
+                                <a class="zoom-social_icons-list__link"
+                                    href="https://www.instagram.com/la_vineria_di_montepulciano/" target="_blank"
+                                    title="Instagram">
+                                    <i class="fa-brands fa-instagram icon-wine" style="background-color : #E4405F; font-size: 22px;"></i>
+                                </a>
+                            </li>
+                            <li class="zoom-social_icons-list__item">
+                                <a class="zoom-social_icons-list__link"
+                                    href="https://www.linkedin.com/company/azienda-agricola-ercolani/" target="_blank"
+                                    title="Default Label">
+                                    <i class="fa-brands fa-linkedin icon-wine" style="background-color : #0077B5; font-size: 22px;"></i>
+                                </a>
+                            </li>
+                            <li class="zoom-social_icons-list__item">
+                                <a class="zoom-social_icons-list__link"
+                                    href="https://www.tripadvisor.it/Restaurant_Review-g194833-d12345595-Reviews-La_Vineria_di_Montepulciano-Montepulciano_Tuscany.html?m=19905"
+                                    target="_blank" title="Default Label">
+                                    <i class='bx bxl-trip-advisor icon-wine' style="background-color : #589442; font-size: 22px;" ></i>
+                                    
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="mkdf-column-content mkdf-grid-col-4">
+                    <div class="widget mkdf-separator-widget">
+                        <div class="mkdf-separator-holder clearfix mkdf-separator-center mkdf-separator-normal">
+                            <div class="mkdf-separator" style="border-style: solid; margin-top: 90px"></div>
+                        </div>
+                    </div>
+                    <div class="widget mkdf-contact-form-7-widget">
+                        <div class="mkdf-widget-title-holder">
+                            <h5 class="mkdf-widget-title">Iscriviti alla Newsletter</h5>
+                        </div>
+                        <div role="form" class="wpcf7" id="wpcf7-f15-o2" lang="en-US" dir="ltr">
+                            <div class="screen-reader-response">
+                                <p role="status" aria-live="polite" aria-atomic="true"></p>
+                                <ul></ul>
+                            </div>
+                            <form action="/#wpcf7-f15-o2" method="post"
+                                class="wpcf7-form init cf7_custom_style_2" novalidate="novalidate" data-status="init">
+                                <div style="display: none;">
+                                    <input type="hidden" name="_wpcf7" value="15">
+                                    <input type="hidden" name="_wpcf7_version" value="5.6.3">
+                                    <input type="hidden" name="_wpcf7_locale" value="en_US">
+                                    <input type="hidden" name="_wpcf7_unit_tag" value="wpcf7-f15-o2">
+                                    <input type="hidden" name="_wpcf7_container_post" value="0">
+                                    <input type="hidden" name="_wpcf7_posted_data_hash" value="">
+                                </div>
+                                <p><span class="wpcf7-form-control-wrap" data-name="your-email"><input type="text"
+                                            name="your-email" value="" size="40"
+                                            class="wpcf7-form-control wpcf7-text wpcf7-email wpcf7-validates-as-required wpcf7-validates-as-email"
+                                            aria-required="true" aria-invalid="false"
+                                            placeholder="il tuo indirizzo E-mail..." style="color:#fff"></span><br><br><button type="submit"
+                                        class="wpcf7-form-control wpcf7-submit mkdf-btn mkdf-btn-medium mkdf-btn-solid"
+                                        disabled="" style="background-color:#fff; color:#000 ; font-family: Lustria,sans-serif;"><span class="mkdf-btn-text">Iscriviti subito</span></button><br>
+                                    <br><span class="wpcf7-form-control-wrap" data-name="privacy"><span
+                                            class="wpcf7-form-control wpcf7-acceptance"><span
+                                                class="wpcf7-list-item"><input type="checkbox" name="privacy"
+                                                    value="1" aria-invalid="false"></span></span></span> <a
+                                        href="/privacy-policy" target="_blank" rel="noopener"><span
+                                            style="color: #ffffff;">Ho letto ed acconsento al trattamento dei miei dati personali come da Privacy Policy</span></a>
+                                </p>
+                                <p style="display: none !important;"><label>Δ<textarea
+                                            name="_wpcf7_ak_hp_textarea" cols="45" rows="8" maxlength="100"></textarea></label><input
+                                        type="hidden" id="ak_js_2" name="_wpcf7_ak_js" value="1696014354187"><script>
+                                        document.getElementById("ak_js_2").setAttribute("value", (new Date()).getTime());
+                                    </script></p>
+                                <div class="wpcf7-response-output" aria-hidden="true"></div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+</body>
+<script type="text/javascript">
+document.getElementById('menu-button').addEventListener('click', function() {
+    var mobileMenu = document.getElementById('menu-menu-principale-mobile');
+    mobileMenu.style.display = 'block';
+    mobileMenu.style.opacity = '1'; // Set opacity to 1 for a smooth fade-in effect
+});
+
+document.querySelector('footer').addEventListener('click', function() {
+    var mobileMenu = document.getElementById('menu-menu-principale-mobile');
+    mobileMenu.style.opacity = '0'; // Set opacity to 0 for a smooth fade-out effect
+    setTimeout(function() {
+        mobileMenu.style.display = 'none';
+    }, 300); // Adjust the transition duration (in milliseconds) to match your CSS transition duration
+});
+
+document.querySelector('.main-reservation-content').addEventListener('click', function() {
+    var mobileMenu = document.getElementById('menu-menu-principale-mobile');
+    mobileMenu.style.opacity = '0'; // Set opacity to 0 for a smooth fade-out effect
+    setTimeout(function() {
+        mobileMenu.style.display = 'none';
+    }, 300); // Adjust the transition duration (in milliseconds) to match your CSS transition duration
+});
+
+	
+</script>
+{% block script %}
+{% endblock %}
+</html>

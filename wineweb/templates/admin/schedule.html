@@ -1,0 +1,264 @@
+{% extends "admin/admin.html" %}
+{% block content %}
+<div class="row ">
+    <div class="col-lg-12 col-md-12">
+        <div class="card" style="min-height: 485px">
+            <div class="card-header card-header-text">
+                <h4 class="card-title">Orari</h4>
+                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#schedule_modal">Nuovo</button>
+            </div>
+            <div class="card-content table-responsive">
+                <table id="table_schedules" class="table table-bordered table-responsive table-striped ">
+                    <thead class="text-primary">
+                        <tr><th>ID</th>
+                        <th>Orario</th>
+                        <th>Negozio</th>
+                        <th class="text-center">Attivo</th>
+                        <th>Modifica</th>
+                        <th>Elimina</th>
+                        
+                    </tr></thead>
+                    <tbody>
+                        {% for schedule in schedules %}
+                        <tr class="align-middle">
+                            <td>{{schedule.id}}</td>
+                            <td>{{schedule.name}}</td>
+                            <td>{{ schedule.negozio.name }}</td> 
+                            <td class="text-center">{% if schedule.active is true %}
+                                <i class="material-icons" ><span class="material-symbols-outlined text-success">
+                            check_circle
+                            </span></i>
+                                {% endif %}
+                            </td> 
+                            <td class="text-center"><button class="btn btn-secondary edit-button-schedules" data-bs-toggle="modal" data-row-id="{{schedule.id}}"data-bs-target="#schedule_modal_edit"><i class="material-icons" style="font-size:15px">edit</i></button></td>
+                            <td class="text-center"><button class="btn btn-danger btn-delete-schedules" data-row-id="{{schedule.id}}" data-bs-toggle="modal" data-bs-target="#schedule_delete_modal"><i class="material-icons" style="font-size:15px">delete</i></button></td>                        
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="schedule_modal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-xl">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Nuovo Orario</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form id="add_schedule" method="POST" action="/schedule/add">
+            <div class="row">
+                <div class="col-12 col-sm-6 col-md-4 col-lg-6 align-items-center ">
+                  <label class="form-label" for="name">Nome</label>
+                  <input type="text" name="name" class="form-control">
+                </div>
+                <div class="col-12 col-sm-6 col-md-4 col-lg-5 col-turns">
+              <label class="form-label" for="shop">Negozio</label>
+              <select name="shop"  class="form-select" >
+                {% for shop in shops %}
+                <option value="{{ shop.id }}">{{ shop.name }}</option>
+                {% endfor %}
+              </select>
+            </div>
+                <div class="col-12 col-sm-6 col-md-4 col-lg-1 align-items-center d-flex flex-column align-items-baseline justify-content-center">
+                  <label class="form-label" for="active">Attivo</label>
+                  <input type="checkbox" name="active" class="form-check m-1">
+                </div>
+            </div>
+          
+          <div class="row mt-2">
+            <div class="col-12 col-sm-6 col-md-4 col-lg-2 col-turns">
+              <label class="form-label" for="monday">Lunedì</label>
+              <select name="monday" multiple class="form-select" aria-label="multiple">
+                {% for turn in turns %}
+                <option value="{{ turn[0] }}">{{ turn[1][:5] }}</option>
+                {% endfor %}
+              </select>
+            </div>
+            <div class="col-12 col-sm-6 col-md-4 col-lg-2 col-turns">
+              <label class="form-label" for="tuesday">Martedì</label>
+              <select name="tuesday" multiple class="form-select">
+                {% for turn in turns %}
+                <option value="{{ turn[0] }}">{{ turn[1][:5] }}</option>
+                {% endfor %}
+              </select>
+            </div>
+            <div class="col-12 col-sm-6 col-md-4 col-lg-2 col-turns">
+              <label class="form-label" for="wednesday">Mercoledì</label>
+              <select name="wednesday" multiple class="form-select">
+                {% for turn in turns %}
+                <option value="{{ turn[0] }}">{{ turn[1][:5] }}</option>
+                {% endfor %}
+              </select>
+            </div>
+            <div class="col-12 col-sm-6 col-md-4 col-lg-2 col-turns">
+              <label class="form-label" for="thursday">Giovedì</label>
+              <select name="thursday" multiple class="form-select">
+                {% for turn in turns %}
+                <option value="{{ turn[0] }}">{{ turn[1][:5] }}</option>
+                {% endfor %}
+              </select>
+            </div>
+            <div class="col-12 col-sm-6 col-md-4 col-lg-2 col-turns">
+              <label class="form-label" for="friday">Venerdì</label>
+              <select name="friday" multiple class="form-select">
+                {% for turn in turns %}
+                <option value="{{ turn[0] }}">{{ turn[1][:5] }}</option>
+                {% endfor %}
+              </select>
+            </div>
+            <div class="col-12 col-sm-6 col-md-4 col-lg-2 col-turns">
+              <label class="form-label" for="saturday">Sabato</label>
+              <select name="saturday" multiple class="form-select">
+                {% for turn in turns %}
+                <option value="{{ turn[0] }}">{{ turn[1][:5] }}</option>
+                {% endfor %}
+              </select>
+            </div>
+            <div class="col-12 col-sm-6 col-md-4 col-lg-2 col-turns">
+              <label class="form-label" for="sunday">Domenica</label>
+              <select name="sunday" multiple class="form-select">
+                {% for turn in turns %}
+                <option value="{{ turn[0] }}">{{ turn[1][:5] }}</option>
+                {% endfor %}
+              </select>
+            </div>
+            
+            
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Chiudi</button>
+        <button type="submit" form="add_schedule" class="btn btn-primary">Conferma</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="schedule_modal_edit" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-xl">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Modifica Orario</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form id="edit_schedule" method="POST" action="/schedule/edit/">
+            <div class="row">
+                <div class="col-12 col-sm-6 col-md-4 col-lg-6 align-items-center ">
+                  <label class="form-label" for="name">Nome</label>
+                  <input type="text" name="name" id="name_edit" class="form-control">
+                </div>
+                <div class="col-12 col-sm-6 col-md-4 col-lg-5 col-turns">
+              <label class="form-label" for="shop">Negozio</label>
+              <select name="shop"  class="form-select" id ="shop_edit" >
+                {% for shop in shops %}
+                <option value="{{ shop.id }}">{{ shop.name }}</option>
+                {% endfor %}
+              </select>
+            </div>
+                <div class="col-12 col-sm-6 col-md-4 col-lg-1 align-items-center d-flex flex-column align-items-baseline justify-content-center">
+                  <label class="form-label" for="active">Attivo</label>
+                  <input type="checkbox" name="active" id="active_edit" class="form-check m-1">
+                </div>
+            </div>
+          
+          <div class="row mt-2">
+            <div class="col-12 col-sm-6 col-md-4 col-lg-2 col-turns">
+              <label class="form-label" for="monday">Lunedì</label>
+              <select name="monday_edit" multiple class="form-select" aria-label="multiple">
+                {% for turn in turns %}
+                <option value="{{ turn[0] }}">{{ turn[1][:5] }}</option>
+                {% endfor %}
+              </select>
+            </div>
+            <div class="col-12 col-sm-6 col-md-4 col-lg-2 col-turns">
+              <label class="form-label" for="tuesday">Martedì</label>
+              <select name="tuesday_edit" multiple class="form-select">
+                {% for turn in turns %}
+                <option value="{{ turn[0] }}">{{ turn[1][:5] }}</option>
+                {% endfor %}
+              </select>
+            </div>
+            <div class="col-12 col-sm-6 col-md-4 col-lg-2 col-turns">
+              <label class="form-label" for="wednesday">Mercoledì</label>
+              <select name="wednesday_edit" multiple class="form-select">
+                {% for turn in turns %}
+                <option value="{{ turn[0] }}">{{ turn[1][:5] }}</option>
+                {% endfor %}
+              </select>
+            </div>
+            <div class="col-12 col-sm-6 col-md-4 col-lg-2 col-turns">
+              <label class="form-label" for="thursday">Giovedì</label>
+              <select name="thursday_edit" multiple class="form-select">
+                {% for turn in turns %}
+                <option value="{{ turn[0] }}">{{ turn[1][:5] }}</option>
+                {% endfor %}
+              </select>
+            </div>
+            <div class="col-12 col-sm-6 col-md-4 col-lg-2 col-turns">
+              <label class="form-label" for="friday">Venerdì</label>
+              <select name="friday_edit" multiple class="form-select">
+                {% for turn in turns %}
+                <option value="{{ turn[0] }}">{{ turn[1][:5] }}</option>
+                {% endfor %}
+              </select>
+            </div>
+            <div class="col-12 col-sm-6 col-md-4 col-lg-2 col-turns">
+              <label class="form-label" for="saturday">Sabato</label>
+              <select name="saturday_edit" multiple class="form-select">
+                {% for turn in turns %}
+                <option value="{{ turn[0] }}">{{ turn[1][:5] }}</option>
+                {% endfor %}
+              </select>
+            </div>
+            <div class="col-12 col-sm-6 col-md-4 col-lg-2 col-turns">
+              <label class="form-label" for="sunday">Domenica</label>
+              <select name="sunday_edit" multiple class="form-select">
+                {% for turn in turns %}
+                <option value="{{ turn[0] }}">{{ turn[1][:5] }}</option>
+                {% endfor %}
+              </select>
+            </div>
+            
+            
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Chiudi</button>
+        <button type="submit" form="add_schedule" class="btn btn-primary">Conferma</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade" id="schedule_delete_modal" tabindex="-1"  aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Elimina Orario</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      
+      <div class="modal-body">
+        <p>Sei sicuro di voler eliminare?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Chiudi</button>
+        <a class="btn btn-danger" id="delete-btn-schedules" href="">Elimina</a>
+      </div>
+    </div>
+    
+  </div>
+</div>
+
+
+{% endblock content %}
+                      
+                        
+          

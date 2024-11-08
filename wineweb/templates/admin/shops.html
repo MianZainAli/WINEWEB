@@ -1,0 +1,178 @@
+{% extends "admin/admin.html" %}
+{% block content %}
+<div class="row ">
+    <div class="col-lg-12 col-md-12">
+        <div class="card" style="min-height: 485px">
+            <div class="card-header card-header-text">
+                <h4 class="card-title">Negozi</h4>
+                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#shops_modal">Nuovo</button>
+            </div>
+            <div class="card-content table-responsive">
+                <table id="table_shops" class="table table-bordered table-responsive table-striped">
+                    <thead class="text-primary">
+                        <tr><th>ID</th>
+                        <th>Nome</th>
+                        <th>Descrizione</th>
+                        <th>Indirizzo</th>
+                        <th>Comune</th>
+                        <th>Provincia</th>
+                        <th>CAP</th>
+                        <th>Google Maps</th>
+                        <th>Modifica</th>
+                        <th>Elimina</th>
+
+                        
+                    </tr></thead>
+                    <tbody>
+                        {% for shop in shops %}
+                        <tr class="align-middle">
+                            <td>{{shop.id}}</td>
+                            <td>{{shop.name}}</td>
+                            <td>{{shop.description}}</td> 
+                            <td>{{shop.address}}</td> 
+                            <td>{{shop.city}}</td> 
+                            <td>{{shop.provincia}}</td>
+                            <td>{{shop.cap}}</td> 
+                            <td>{{shop.location_link}}</td>
+                            <td class="text-center"><button class="btn btn-secondary edit-button-shops" data-bs-toggle="modal" data-row-id="{{shop.id}}"data-bs-target="#shops_edit_modal"><i class="material-icons" style="font-size:15px">edit</i></button></td>
+                            <td class="text-center"><button class="btn btn-danger btn-delete-shops" data-row-id="{{shop.id}}" data-bs-toggle="modal" data-bs-target="#shops_delete_modal"><i class="material-icons" style="font-size:15px">delete</i></button></td>                            
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="shops_modal" tabindex="-1"  aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <form method="POST" action="">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Nuovo Negozio</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        
+              {{ form.hidden_tag() }}
+        <div class="row">
+            <div class="col-12 col-sm-6">
+                {{ form.name.label(class="form-label") }}
+                {{ form.name(class="form-control") }} 
+            </div>
+            <div class="col-12 col-sm-6">
+                {{ form.description.label(class="form-label") }}
+                {{ form.description(class="form-control") }}
+            </div> 
+        </div>
+        <div class="row mt-2">
+            <div class="col-12 col-sm-8 col-md-6">
+                {{ form.address.label(class="form-label") }}
+                {{ form.address(class="form-control") }} 
+            </div>
+            <div class="col-6 col-sm-2 col-md-2">
+                {{ form.city.label(class="form-label") }}
+                {{ form.city(class="form-control") }}
+            </div>
+            <div class="col-6 col-sm-2 col-md-2">
+                {{ form.cap.label(class="form-label") }}
+                {{ form.cap(class="form-control") }} 
+            </div>
+            <div class="col-12 col-sm-4 col-md-2">
+                {{ form.provincia.label(class="form-label") }}
+                {{ form.provincia(class="form-control") }} 
+            </div>               
+        </div>
+        <div class="row mt-2">
+            <div class="col-12">
+                {{ form.link.label(class="form-label") }}
+                {{ form.link(class="form-control") }} 
+            </div> 
+        </div>
+            </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Chiudi</button>
+                {{ form.submit(class="btn btn-primary ") }}
+              </div>
+        </div>
+    </form>
+  </div>
+</div>
+<div class="modal fade" id="shops_edit_modal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <form id="form-shops-edit">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Modifica Negozio</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <input type="hidden" id="shops-id-edit">
+          <div class="row">
+            <div class="col-12 col-sm-6">
+              <label for="name" class="form-label">Nome</label>
+              <input type="text" id="name_edit" name="name" class="form-control" />
+            </div>
+            <div class="col-12 col-sm-6">
+              <label for="description" class="form-label">Descrizione</label>
+              <input type="text" id="description_edit" name="description" class="form-control" />
+            </div>
+          </div>
+          <div class="row mt-2">
+            <div class="col-12 col-sm-8 col-md-6">
+              <label for="address" class="form-label">Indirizzo</label>
+              <input type="text" id="address_edit" name="address" class="form-control" />
+            </div>
+            <div class="col-6 col-sm-2 col-md-2">
+              <label for="city" class="form-label">Comune</label>
+              <input type="text" id="city_edit" name="city" class="form-control" />
+            </div>
+            <div class="col-6 col-sm-2 col-md-2">
+              <label for="cap" class="form-label">CAP</label>
+              <input type="text" id="cap_edit" name="cap" class="form-control" />
+            </div>
+            <div class="col-12 col-sm-4 col-md-2">
+              <label for="provincia" class="form-label">Provincia</label>
+              <input type="text" id="provincia_edit" name="provincia" class="form-control" />
+            </div>
+          </div>
+          <div class="row mt-2">
+            <div class="col-12">
+              <label for="link" class="form-label">Google Maps Link</label>
+              <input type="text" id="link_edit" name="link" class="form-control" />
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Chiudi</button>
+          <a id="submit-shops-edit" class="btn btn-primary" />Modifica</a>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+
+<div class="modal fade" id="shops_delete_modal" tabindex="-1"  aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Elimina Negozio</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      
+      <div class="modal-body">
+        <p>Sei sicuro di voler eliminare?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Chiudi</button>
+        <a class="btn btn-danger" id="delete-btn-shops" href="">Elimina</a>
+      </div>
+    </div>
+    
+  </div>
+</div>
+{% endblock content %}
+                      
+                        
+          

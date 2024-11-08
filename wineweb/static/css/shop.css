@@ -1,0 +1,89 @@
+*{
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.image-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 10px;
+  height: calc(100vh - 120px);
+  overflow: hidden;
+  padding: 10px 0px 20px 0px;
+  margin-inline: auto;
+}
+
+.container {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+.image {
+  display: block;
+  height: 100%!important;
+  width: 100%;
+  object-fit: cover;
+  opacity: 1;
+  transition: 0.5s ease;
+  backface-visibility: hidden;
+}
+ /* i need the anchor to appear in the bottom with all the width */
+.middle {
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  right: 0;
+  background-color: white;
+  overflow: hidden;
+  width: 100%;
+  transform: translateY(100%);
+  transition: 0.5s ease-in-out;
+  opacity: 0;
+  text-align: center;
+  padding: 10px 0;
+}
+/* On hover, reduce opacity of the image */
+.container:hover .image {
+  scale: 1.03;
+}
+
+/* On hover, make the overlay visible */
+.container:hover .middle {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.text {
+  background-color: #04AA6D;
+  color: white;
+  font-size: 16px;
+  padding: 16px 32px;
+}
+
+@media screen and (max-width: 1344px) {
+}
+
+/* Media query for small screens (max-width: 768px) */
+@media screen and (max-width: 768px) {
+  .image-container {
+    grid-template-columns: 1fr;
+    height: auto;
+    gap: 20;
+    padding-bottom: 15px;
+  }
+  .middle{
+    transform: translateY(0);
+    opacity: 1;
+    padding: 0;
+
+  }
+  .middle h3{
+    font-size: 16px;
+    margin: 15px 0;
+  }
+}
+
+  
+  

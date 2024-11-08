@@ -1,0 +1,20 @@
+{% extends "layout.html" %}
+{% block css %}
+ <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/shop.css')}}">
+{% endblock%}
+{% block content %}
+<div class="image-container">
+  <div class="container">
+    <a href="/people/1"><img src="{{ url_for('static', filename='images/esterno.jpg') }}" alt="Your Image" class="image"></a>
+    <div class="middle">
+      <a href="/people/1"><h3>Prenota Vineria 1</h3></a>
+  </div>
+  </div>
+  <div class="container">
+    <a href="/people/2"><img src="{{ url_for('static', filename='images/ingresso_vineria2.jpeg') }}" alt="Your Image" class="image" ></a>
+    <div class="middle">
+      <a href="/people/2"><h3>Prenota Vineria 2</h3></a>
+    </div>
+  </div>
+</div>
+{% endblock %}
