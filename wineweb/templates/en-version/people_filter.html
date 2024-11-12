@@ -1,0 +1,43 @@
+{% extends "en-version/layout.html" %}
+{% block css %}
+ <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/people.css')}}">
+{% endblock %}
+{% block content %}
+<div class="image-container" style="justify-content: center;">
+    <div class="container">
+        <h1>How many of you are there?</h1>
+        <input type="text" id="people_many" name="people_many" style="font-size: 50px;">
+        <a href="/en/index/{{ id }}/" id="confermaLink" class="btn-custom">Confirm</a>
+    </div>
+</div>
+<script>
+    var currentId = "{{ id }}"; // Replace with the actual way you retrieve the current ID
+
+    var peopleInput = document.getElementById("people_many");
+    var confermaLink = document.getElementById("confermaLink");
+
+    // Function to update the link based on the input value
+    function updateLink() {
+        // Get the value from the input field
+        var inputValue = peopleInput.value;
+
+        // Check if the input value is empty
+        if (inputValue.trim() === "") {
+            // If it's empty, disable the link
+            confermaLink.href = "javascript:void(0);";
+            confermaLink.classList.add("disabled"); // Add a "disabled" class for styling
+        } else {
+            // If it's not empty, enable the link and set the href with ID and input value
+            confermaLink.href = "/en/index/" + currentId + "/" + inputValue ;
+            confermaLink.classList.remove("disabled"); // Remove the "disabled" class
+        }
+    }
+
+    // Initial link setup
+    updateLink();
+
+    // Add an event listener to the input field to update the link on input changes
+    peopleInput.addEventListener("input", updateLink);
+</script>
+
+{% endblock %}

@@ -121,7 +121,7 @@ $(document).ready(function () {
       format: 'dd/mm/yyyy', // Display format for the datepicker
       autoclose: true,
       startDate: '+1d', // Start from tomorrow
-      language: 'it', // Set language to Italian
+      language: 'en', // Set language to English
       todayHighlight: false, // Highlight today's date
       beforeShowDay: function (date) { // Function to disable specific dates
         // Format the date for comparison as mm-dd

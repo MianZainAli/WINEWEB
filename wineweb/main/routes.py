@@ -74,3 +74,68 @@ def order_success():
 
     return "Reservation not found", 404
 
+
+
+
+# English Version Routes
+
+@main.route("/en/index/<int:id>/<int:people>", methods=['POST', 'GET'])
+def en_index(id, people):
+    id_shop = id
+
+    # Define the URL of the second app's endpoint
+    lavineria_url = f'https://foodie-56c41215e495.herokuapp.com/lavineria/tables/{id}/{people}'
+
+    # Make a GET request to the second app's route
+    
+    response = requests.get(lavineria_url)
+
+    if response.status_code == 200:
+        tables_data = response.json().get('data', {})
+    else:
+        tables_data = {}
+    
+
+    # Pass the tables data to the templates
+    if id_shop == 1:
+        return render_template('en-version/index.html', tables=tables_data, shop=id_shop)
+    elif id_shop == 2:
+        return render_template('en-version/index2.html', tables=tables_data, shop=id_shop)
+
+
+
+
+@main.route("/en/")
+@main.route("/shop-selection")
+def en_shop_selection():
+	title = "Scegli il negozio"
+	return render_template('en-version/shop-select.html', title = title)
+
+
+
+
+@main.route('/en/people/<int:id>', methods = ['POST', 'GET'])
+def en_people_filter(id):
+	id_shop = id
+	if id_shop == 1:
+		return render_template('en-version/people_filter.html', id = id_shop, title="Quante persone?")
+	elif id_shop== 2:
+		return render_template('en-version/people_filter.html', id = id_shop, title="Quante persone?")
+
+
+
+
+@main.route('/en/order/success', methods=['GET'])
+def en_order_success():
+    payment_intent_id = request.args.get('payment_intent_id')
+    
+    if payment_intent_id:
+        message = "Grazie per la tua prenotazione! Riceverai una mail di conferma con tutte le indicazioni ed il regolamento relativo all'eventuale disdetta del tavolo"
+        lavineria_url = f'https://foodie-56c41215e495.herokuapp.com/lavineria/send-confirm-email/{payment_intent_id}'
+        response = requests.get(lavineria_url)
+        return render_template('en-version/success.html', message=message, title="Congratulazioni")
+
+
+    return "Reservation not found", 404
+
+

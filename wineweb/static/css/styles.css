@@ -83,8 +83,34 @@
   .top-text small{
     font-size: 14px;
   }
-  
+
+  .button-carousel {
+    height: 65px;
+    width: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .button-carousel span svg {
+    width: 10px;
+    height: 25px;
+  }
 }
+
+@media (max-width: 480px) {
+  .button-carousel {
+    height: 50px;
+     width: 15px;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+   }
+   .button-carousel span svg {
+     width: 7px;
+     height: 20px;
+   }
+}
+
 .btn-custom {
   background-color: #000!important;
   color: white;
@@ -487,7 +513,6 @@
 .wizard.vertical .content > .body {
   padding-left: 5px;
 }
-
 
 .steps.clearfix {
 width: -webkit-fill-available;

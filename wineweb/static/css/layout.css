@@ -28165,3 +28165,32 @@ table {
     border-collapse: unset!important;
 }
 
+.language-switch {
+    position: fixed;
+    bottom: 0px; 
+    right: 8%; 
+    width: 173px;
+    line-height: 17px;
+    border: 1px solid #666666;
+    background-color: white;
+    padding: 3px 5px;
+    font-family: Arial, sans-serif;
+    z-index: 1000;
+  }
+  
+  .language-switch select {
+    border: none;
+    width: 100%;
+    font-size: 16px;
+    color: #333;
+    cursor: pointer;
+    outline: none;
+  }
+
+  
+  .language-switch select option {
+    background-color: white;
+    color: #333;
+    padding: 10px;
+  }
+  

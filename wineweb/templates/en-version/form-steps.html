@@ -1,0 +1,37 @@
+<div id="prenotazioni_content" class="container">
+  <div class="row">
+    <div id="example-basic">
+    <h3 id="section_header_date">Choose a Date</h3>
+    <input type="hidden" id="table_number">
+    <section>
+        <div class="px-4">
+        <div id="datepickerContainer"></div>
+        <input type="hidden" id="customer_date">
+      </div>
+    </section>
+    <h3 id="section_header_hour">Choose a time</h3>
+    <section>
+        <h6>Select a time from the available ones:</h6>
+        <div id="section_hour" ></div>
+        <input type="hidden" id="customer_turn">
+        <h6>Each shift lasts an hour and a half</h6> 
+        
+    </section>
+    <h3 id="section_header_people">Number of People</h3>
+    <section>
+         <h6>Select the number of people:</h6>
+        <div id="section_people"></div>
+
+        <input type="hidden" id="customer_people">
+    </section>
+    <h3 id="section_header_contacts">Contacts</h3>
+    <section>
+
+        <div id="section_contact">
+        {% include "en-version/form.html" %}
+         </div>
+
+    </section>
+</div>
+   </div>
+</div>

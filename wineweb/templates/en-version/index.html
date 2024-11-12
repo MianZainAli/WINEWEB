@@ -1,0 +1,173 @@
+{% extends "en-version/layout.html" %}
+  {% block css %}
+  <!-- Include Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <!-- Include Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+    crossorigin="anonymous">
+  <!-- Include Bootstrap Datepicker CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
+  <!-- Include Your Custom CSS -->
+  <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/styles.css')}}">
+  {% endblock %}
+
+{% block content %}
+  <div class="d-flex justify-content-center">   
+    <div class="block d-flex flex-column text-center top-text">
+      <h1>Click on your table!</h1>
+      <small>THE AVAILABLE TABLES WILL BE INDICATED BY A BUTTON</small>
+    </div>
+  </div>
+
+  <div id="carouselExampleFade" class="carousel slide carousel-fade m-auto" data-bs-ride="carousel" >
+    <div class="carousel-inner">
+      
+      <div class="carousel-item active">
+        <input type="hidden" id="shop_number" value="{{ shop }}">
+        <div class="container-fluid">
+          <img src="{{ url_for('static', filename='images/esterno.jpg') }}" alt="Your Image" class="responsive-image">
+          {% if tables['table-3'] %} <button id="table-3" data-max-people="{{ tables['table-3']['max'] }}" data-min-people="{{ tables['table-3']['min'] }}" data-number= "{{ tables['table-3']['number'] }}" class="button-table">{{ tables['table-3']['number'] }}.</button>{% endif %}
+
+          {% if tables['table-4'] %} <button id="table-4" data-max-people="{{ tables['table-4']['max'] }}" data-min-people="{{ tables['table-4']['min'] }}" data-number= "{{ tables['table-4']['number'] }}" class="button-table">{{ tables['table-4']['number'] }}.</button>{% endif %}
+         <button class="btn-carousel-prev button-carousel"  data-bs-target="#carouselExampleFade" data-bs-slide="prev">
+          <span class="mkdf-next-icon"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="15px" height="29px" viewBox="0 0 15 29" enable-background="new 0 0 15 29" xml:space="preserve">
+            <g>
+              <polygon fill="currentColor" points="14.427,0.13 14.993,0.697 1.13,14.556 14.993,28.416 14.427,28.979 0,14.556 	"></polygon>
+            </g>
+            </svg></span>
+         </button>
+          <button class="btn-carousel-next button-carousel" data-bs-target="#carouselExampleFade" data-bs-slide="next">
+            <span class="mkdf-next-icon"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="15px" height="29px" viewBox="0 0 15 29" enable-background="new 0 0 15 29" xml:space="preserve">
+              <g>
+                <polygon fill="currentColor" points="14.427,0.13 14.993,0.697 1.13,14.556 14.993,28.416 14.427,28.979 0,14.556 	"></polygon>
+              </g>
+              </svg></span>
+          </button>
+        </div>
+      </div>
+
+      <div class="carousel-item">
+        <div class="container-fluid">
+          
+          <img src="{{ url_for('static', filename='images/ingresso.jpg') }}" alt="Your Image" class="responsive-image">
+          {% if tables['table-6'] %} <button id="table-6" data-max-people="{{ tables['table-6']['max'] }}" data-min-people="{{ tables['table-6']['min'] }}" data-number= "{{ tables['table-6']['number'] }}" class="button-table">{{ tables['table-6']['number'] }}.</button>{% endif %}
+
+          {% if tables['table-7'] %} <button id="table-7" data-max-people="{{ tables['table-7']['max'] }}" data-min-people="{{ tables['table-7']['min'] }}" data-number= "{{ tables['table-7']['number'] }}" class="button-table">{{ tables['table-7']['number'] }}.</button>{% endif %}
+
+          {% if tables['table-8'] %} <button id="table-8" data-max-people="{{ tables['table-8']['max'] }}" data-min-people="{{ tables['table-8']['min'] }}" data-number= "{{ tables['table-8']['number'] }}" class="button-table">{{ tables['table-8']['number'] }}.</button>{% endif %}
+          <button class="btn-carousel-prev button-carousel"  data-bs-target="#carouselExampleFade" data-bs-slide="prev">
+            <span class="mkdf-next-icon"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="15px" height="29px" viewBox="0 0 15 29" enable-background="new 0 0 15 29" xml:space="preserve">
+              <g>
+                <polygon fill="currentColor" points="14.427,0.13 14.993,0.697 1.13,14.556 14.993,28.416 14.427,28.979 0,14.556 	"></polygon>
+              </g>
+              </svg></span>
+          </button>
+          <button class="btn-carousel-next button-carousel" data-bs-target="#carouselExampleFade" data-bs-slide="next">
+            <span class="mkdf-next-icon"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="15px" height="29px" viewBox="0 0 15 29" enable-background="new 0 0 15 29" xml:space="preserve">
+              <g>
+                <polygon fill="currentColor" points="14.427,0.13 14.993,0.697 1.13,14.556 14.993,28.416 14.427,28.979 0,14.556 	"></polygon>
+              </g>
+              </svg></span>
+          </button>
+          
+        </div>
+      </div>
+      <div class="carousel-item ">
+        <div class="container-fluid">
+          <img src="{{ url_for('static', filename='images/interno.jpg') }}" alt="Your Image" class="responsive-image">
+          
+          {% if tables['table-14'] %} <button id="table-14" data-max-people="{{ tables['table-14']['max'] }}" data-min-people="{{ tables['table-14']['min'] }}" data-number="{{ tables['table-14']['number'] }}" class="button-table">{{ tables['table-14']['number'] }}.</button>{% endif %}
+
+          
+          {% if tables['table-13'] %} <button id="table-13" data-max-people="{{ tables['table-13']['max'] }}" data-min-people="{{ tables['table-13']['min'] }}" data-number="{{ tables['table-13']['number'] }}" class="button-table">{{ tables['table-13']['number'] }}.</button>{% endif %}
+
+          
+          {% if tables['table-10'] %} <button id="table-10" data-max-people="{{ tables['table-10']['max'] }}" data-min-people="{{ tables['table-10']['min'] }}" data-number="{{ tables['table-10']['number'] }}" class="button-table">{{ tables['table-10']['number'] }}.</button>{% endif %}
+
+          
+          {% if tables['table-11'] %} <button id="table-11" data-max-people="{{ tables['table-11']['max'] }}" data-min-people="{{ tables['table-11']['min'] }}" data-number="{{ tables['table-11']['number'] }}" class="button-table">{{ tables['table-11']['number'] }}.</button>{% endif %}
+
+          
+          {% if tables['table-12'] %} <button id="table-12" data-max-people="{{ tables['table-12']['max'] }}" data-min-people="{{ tables['table-12']['min'] }}" data-number="{{ tables['table-12']['number'] }}" class="button-table">{{ tables['table-12']['number'] }}.</button>{% endif %}
+
+          
+          {% if tables['table-9'] %} <button id="table-9" data-max-people="{{ tables['table-9']['max'] }}" data-min-people="{{ tables['table-9']['min'] }}" data-number= "{{ tables['table-9']['number'] }}" class="button-table">{{ tables['table-9']['number'] }}.</button>{% endif %}
+          <button class="btn-carousel-prev button-carousel"  data-bs-target="#carouselExampleFade" data-bs-slide="prev">
+            <span class="mkdf-next-icon"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="15px" height="29px" viewBox="0 0 15 29" enable-background="new 0 0 15 29" xml:space="preserve">
+              <g>
+                <polygon fill="currentColor" points="14.427,0.13 14.993,0.697 1.13,14.556 14.993,28.416 14.427,28.979 0,14.556 	"></polygon>
+              </g>
+              </svg></span>
+          </button>
+          <button class="btn-carousel-next button-carousel" data-bs-target="#carouselExampleFade" data-bs-slide="next">
+            <span class="mkdf-next-icon"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="15px" height="29px" viewBox="0 0 15 29" enable-background="new 0 0 15 29" xml:space="preserve">
+              <g>
+                <polygon fill="currentColor" points="14.427,0.13 14.993,0.697 1.13,14.556 14.993,28.416 14.427,28.979 0,14.556 	"></polygon>
+              </g>
+              </svg></span>
+          </button>
+
+        </div>
+      </div>
+    </div>
+    </div>
+    
+  </div>
+
+  <!-- Button trigger modal -->
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel"></h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          {% include 'en-version/form-steps.html' %}
+        </div>
+        <div class="modal-footer">
+          <button type="button" id="checkout-button" class="btn-custom">Confirm</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endblock %}
+
+{% block script %}
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"
+    integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/bootstrap.datepicker-fork/1.3.0/js/locales/bootstrap-datepicker.it.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-steps/1.1.0/jquery.steps.min.js"
+    integrity="sha512-bE0ncA3DKWmKaF3w5hQjCq7ErHFiPdH2IGjXRyXXZSOokbimtUuufhgeDPeQPs51AI4XsqDZUK7qvrPZ5xboZg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://js.stripe.com/v3/"></script>
+
+
+    
+  <script type="text/javascript" src="{{url_for('static', filename='js/script-en.js')}}"></script>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      var myCarousel = new bootstrap.Carousel(document.getElementById("carouselExampleFade"), {
+          interval: 3000,
+          ride: 'carousel', 
+          wrap: true,
+          touch: true
+      });
+      myCarousel.cycle();
+  });
+  </script>
+
+{% endblock %}
